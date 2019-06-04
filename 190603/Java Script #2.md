@@ -96,9 +96,8 @@
 - 이벤트 핸들러
 
   - 이벤트 : 웹페이지상에서 발생되는 일
-
-    				1. 브라우저에서 자동으로 발생(load)
-       				2. 사용자의 액션에 의해서 발생(click, mouseover, mouseenter, mouseout, keyin, keypress, keyout, scroll, change, submit, reset, ......)
+            1. 브라우저에서 자동으로 발생(load)
+            2. 사용자의 액션에 의해서 발생(click, mouseover, mouseenter, mouseout, keyin, keypress, keyout, scroll, change, submit, reset, ......)
 
   - 타겟 : 이벤트가 발생된 대상 객체
 
