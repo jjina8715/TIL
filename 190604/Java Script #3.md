@@ -99,3 +99,21 @@
 - 도형 합성
 
   - globalCompositeOperatio : 원본(먼저 그린 도형)도형과 대상(나중에 그린 도형) 도형의 겹쳐진 형태에 따른 표시 방법을 정의. source-over, source-in, destination-over, lighter, ....
+
+- 비트맵 이미지 관리와 THMLObjectCanvas 객체
+
+  - 비트맵 이미지 관리
+
+    - createImageData(sw, sh)
+
+    - createImageData(ImageData 객체)
+
+      비트맵 이미지 객체(ImageData)를 생성
+
+    - getImageData(sx, sy, sw, sh) : &lt;canvas> 객체의 주어진 영역의 데이터를 비트맵 이미지 객체(ImageData)로 추출 
+
+    - putImageData(ImageData 객체, dx, dy) : &lt;canvas> 객체의  (dx, dy) 위치에 비트맵 이미지 객체(ImageData)의 데이터를 출력
+
+  - HTMLObjectCanvas 객체 저장
+
+    - toDataURL() : &lt;canvas>태그 영역의 모든 내용을 png 형식의 URI 문자열로 변환하여 반환
