@@ -84,7 +84,7 @@
        <h2></h2>
        <button onclick="changeColor('red')">빨강</button>
        <script>
-       	document.getElementsByTagName("h2")[0];
+       	var target = document.getElementsByTagName("h2")[0];
            target.innerHTML = "dddd";
            function changeColor(col){
                target.style.color = col;
@@ -97,10 +97,8 @@
 
   - 이벤트 : 웹페이지상에서 발생되는 일
 <<<<<<< HEAD
-
-    1. 브라우저에서 자동으로 발생(load)			
-  
-     				2. 사용자의 액션에 의해서 발생(click, mouseover, mouseenter, mouseout, keyin, keypress, keyout, scroll, change, submit, reset, ......)
+1. 브라우저에서 자동으로 발생(load)			
+    2. 사용자의 액션에 의해서 발생(click, mouseover, mouseenter, mouseout, keyin, keypress, keyout, scroll, change, submit, reset, ......)
   
 - 타겟 : 이벤트가 발생된 대상 객체
   
@@ -109,55 +107,22 @@
 - 이벤트 모델 : 특정한 타겟에서 정해진 이벤트가 발생했을 때 핸들러가 수행되도록 구현하는 방법
   
      1. 인라인 이벤트 모델 : 간단하지만 유지보수하기엔 안 좋다. 지역 방식
-  
+    
         - 태그의 속성으로 등록. onXxx="코드"의 형태
-  
+    
      2. 고전 이벤트 모델 : 전역 방식
-  
+    
         - DOM객체를 찾는다.
-  
+      
           DOM객체.onxxx = 함수;
-  
+      
           DOM객체.onxxx = null;
-  
+    
      3. 표준 이벤트 모델 : w3c가 개발. 전역 방식
-  
+    
         - DOM 객체를 찾는다.
-  
+      
           DOM객체.addEventListener("xxx", 함수);
-  
+      
           DOM객체.removeEventListener("xxx", 함수);
-  
-            
-=======
-            1. 브라우저에서 자동으로 발생(load)
-            2. 사용자의 액션에 의해서 발생(click, mouseover, mouseenter, mouseout, keyin, keypress, keyout, scroll, change, submit, reset, ......)
-
-  - 타겟 : 이벤트가 발생된 대상 객체
-
-  - 이벤트 핸들러/리스너 : 이벤트가 발생했을 때 수행되는 코드를 담고 있는 함수
-
-  - 이벤트 모델 : 특정한 타겟에서 정해진 이벤트가 발생했을 때 핸들러가 수행되도록 구현하는 방법
-
-       1. 인라인 이벤트 모델 : 간단하지만 유지보수하기엔 안 좋다. 지역 방식
-
-          - 태그의 속성으로 등록. onXxx="코드"의 형태
-
-       2. 고전 이벤트 모델 : 전역 방식
-
-          - DOM객체를 찾는다.
-
-            DOM객체.onxxx = 함수;
-
-            DOM객체.onxxx = null;
-
-       3. 표준 이벤트 모델 : w3c가 개발. 전역 방식
-
-          - DOM 객체를 찾는다.
-
-            DOM객체.addEventListener("xxx", 함수);
-
-            DOM객체.removeEventListener("xxx", 함수);
-
-            
->>>>>>> 65ceb1aa779d36b6984a593f70bff75f334e44ee
+      
