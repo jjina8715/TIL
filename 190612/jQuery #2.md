@@ -42,4 +42,11 @@
 
   - event.stopPropagation(); : 핸들러 상속 정지
   - event.preventDefault(); : 기본 이벤트 핸들러 제거
+  
+- jQuery에서 Ajax 프로그래밍 지원 API
+
+  - $.ajax(), $.get(), $.post()
+  - $.getJSON(): 두번째 아규먼트로 함수를 지정, data를 매개 변수로 주어 자바스크립으로 만드는 과정을 생략할 수 있다.
+  - $(Ajax요청으로 응답받은 내용을 추가하려는 부모태그).load()
+  - $(document).ajaxComplete()/ajaxError().ajaxSend()/ajaxSuccess()/ajaxStart() : ajax이벤트 핸들러 등록
 
