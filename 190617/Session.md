@@ -22,4 +22,13 @@
     1. 브라우저가 기동되어 있는 동안
     2. invalidate() 메서드가 호출되기 전까지
     3. inactive interva() 시간이 적용되기 전까지
-
+  
+  - HttpSession에 요소 저장 
+  
+    - 객체로 만든다.(배열 객체)
+  
+    - 저장 : session.setAttribute("이름", 객체);
+  
+    - 삭제 : session.removeAttribute("이름");
+  
+    - 추출 : session.getAttribute("이름"); ---> 강제 형변환은 필수 
