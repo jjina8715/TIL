@@ -32,3 +32,17 @@
     - 삭제 : session.removeAttribute("이름");
   
     - 추출 : session.getAttribute("이름"); ---> 강제 형변환은 필수 
+  
+  - 주요 메서드
+  
+    | 메서드                                   | 기능                                                         |
+    | ---------------------------------------- | ------------------------------------------------------------ |
+    | Enumeration getAttributeNames()          | 세션에 등록된 객체들의 이름 열거                             |
+    | long getCreationTime()                   | 1970 1.1 GMT 부터 세션이 만들어졌을 때까지의 시간을 밀리초 단위로 반환 |
+    | String getId()                           | 세션에 지정된 세션 ID 반환                                   |
+    | long getLastAccessedTime()               | 클라이언트 요청이 마지막으로 시도된 시간을 밀리초로 반환     |
+    | int getMaxInactiveInterval()             | 클라이언트의 요구가 없을 때 서버가 현재의 세션을 언제까지 유지할지를 초시간 단위로 반환. 기본값은 30분 |
+    | boolean isNew()                          | 서버측에서 새로운 세션을 생성한 경우에는 true 반환, 기존의 세션이 유지되고 있으면 false 반환 |
+    | void setMaxInactiveInterval(int seconds) | 세션 유지 시간을 설정. 이 시간이 지나면 세션은 자동 종료/객체 삭제 |
+  
+    
