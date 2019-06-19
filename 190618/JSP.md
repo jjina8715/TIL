@@ -9,15 +9,13 @@
      - <%@ %> : 지시자
      - <%-- --%> : 주석(HTML 주석 : &lt;!-- -->, 자바 주석 : //, /* */)
    - 액션 태그
-     - <jsp:useBean .../>
-     - <jsp:forward .../>
-     - <jsp:include .../>
-     - <jsp:setProperty .../>
-     - <jsp:getProperty .../>
+     - <jsp:useBean .../> : 주어진 JavaBeans 클래스의 객페를 생성하거나 이미 생성된 객체를 추출
+     - <jsp:forward .../> : 요청된 JSP 대신 다른 자원의 내용 또는 수행 결과를 대신 클라이언트로 응답
+     - <jsp:include .../> : JSP 페이지의 수행 결과 내에 다른 자원의 내용 또는 수행 결과를 포함
+     - <jsp:setProperty .../> : JavaBeans 객체의 프로퍼티 값을 설정
+     - <jsp:getProperty .../> : JavaBeans 객체의 프로퍼티 값을 추출
    - 커스텀 태그
      - 필요에 의해 개발자가 직접 태그를 만들어서 사용
      - JSTL : 톰캣의 개발자들이 만들어서 배포한 커스텀 태그
-
-2. JSP 내장 객체
 
    
