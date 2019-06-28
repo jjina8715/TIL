@@ -11,7 +11,7 @@
    - Spring DL(Dependency Lookup)
 
      ```java
-     타입명 bean = (타입명)context.getBean("bean 이름");
+     타입명 bean = (타입명)context.getBean("bean 이름");\
      ```
 
    - Spring DI(Dependency Injection) : 객체간의 결합도를 느슨하게 하는 스프링의 핵심기술
@@ -50,17 +50,19 @@
 
        <하위태그 이용>
 
-       	- &lt;ref bean="bean name"/> 객체를 주입시
-        - &lt;value>값&lt;value> 문자(String), Primitive 주입 시
+       ```xml
+       <ref bean="bean name"/> 객체를 주입시
+       ```
+   - &lt;value>값&lt;value> 문자(String), Primitive 주입 시
           	- type속성 : 값을 1차로 Sring으로 처리한다. 값의 타입을 명시해야 하는 경우
 
        &lt;속성 사용>
-
-       - ref="bean이름"
+     
+  - ref="bean이름"
        - value="값"
 
      - setter 메소드를 통한 객체 간의 관계나 값 입력
-
+     
        - setter를 통해서는 하나의 값만 설정 가능
        - &lt;property> : &lt;bean>의 하위 태그로 다른 bean 객체나 값을 property를 통해 주입하도록 설정
        - name속성 : 객체나 값을 주입할 property 이름을 설정(setter의 이름)
