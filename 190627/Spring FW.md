@@ -40,27 +40,43 @@
      - &lt;bean> : spring DI 컨테이너가 관리할 Bean 객체를 설정
 
        - id : 주입 받을 곳에서 호출할 이름 설정
+     
        - class : 주입할 객체의 클래스
+
        - factory-method : Singleion패턴으로 작성된 객체의 factory 메소드 호출 시
+
+       - autowired
+     
+    - "byType" : setter
+     
+      타입을 찾아 1개면 객체 주입, 2개 이상이면 예외 발생, 없으면 null 주입
+     
+         - "byName" : setter
+     
+      프로퍼티 명과 동일한 명칭의 빈을 찾아서 해당 객체 주입, 없으면 null 주입
+     
+    - "constructor"
+     
+           타입을 찾아 1개면 객체 주입, 2개 이상이면 매개변수명과 동일한 id값을 갖는 객체 주입. 없으면 null 주입
 
      - Constructor를 이용한 객체간의 관계 또는 값 주입
 
        - 객체나 값을 생성자를 통해 주입 받는다. 한번에 여러 개 설정 가능
        - &lt;constructor-arg> : &lt;bean>의 하위 태그로서 다른 bean 객체나 값을 생성자를 통해 주입하도록 설정
-
+     
        <하위태그 이용>
-
+     
        ```xml
        <ref bean="bean name"/> 객체를 주입시
        ```
-   - &lt;value>값&lt;value> 문자(String), Primitive 주입 시
+        - &lt;value>값&lt;value> 문자(String), Primitive 주입 시
           	- type속성 : 값을 1차로 Sring으로 처리한다. 값의 타입을 명시해야 하는 경우
-
+     
        &lt;속성 사용>
      
-  - ref="bean이름"
+       - ref="bean이름"
        - value="값"
-
+     
      - setter 메소드를 통한 객체 간의 관계나 값 입력
      
        - setter를 통해서는 하나의 값만 설정 가능
