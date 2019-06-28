@@ -11,7 +11,7 @@
    - Spring DL(Dependency Lookup)
 
      ```java
-     타입명 bean = (타입명)context.getBean("bean 이름");\
+     타입명 bean = (타입명)context.getBean("bean 이름");
      ```
 
    - Spring DI(Dependency Injection) : 객체간의 결합도를 느슨하게 하는 스프링의 핵심기술
