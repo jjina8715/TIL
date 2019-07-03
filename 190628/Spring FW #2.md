@@ -152,7 +152,7 @@
 | String                        | 뷰 이름을 리턴                                               |
 | View                          | View 객체를 직접 리턴. 해당 View 객체를 이용해서 뷰를 생성   |
 | void                          | 메서드가 ServeltResponse나 HttpServletResponse 타입의 파라미터를 갖는 경우 메서드가 직접 응답을 처리한다고 가정. 그렇지 않을 경우 요청URL로부터 결정된 뷰를 보여준다. (RequestToViewNameTranslator를 통해 뷰 결정) |
-| @ResponseBody 어노테이션 적용 | 메서드에서 @ResponseBody 어노테이션이 적용된 경우. 리턴 객체를 HTTP 응답으로 전송. HttpMessageConverter를 이용해서 객체를 HTTP응답스트림으로 변환 |
+| @ResponseBody 어노테이션 적용 | 메서드에서 @ResponseBody 어노테이션이 적용된 경우. 리턴 객체를 HTTP 응답으로 전송. HttpMessageConverter를 이용해서 객체를 HTTP 응답스트림으로 변환 |
 
 **@Service**
 
@@ -165,6 +165,97 @@
 - Controller등록을 위한 url bean 설정을 생략할 수 있다.
 - class에 하나의 url mapping을 할 경우, class위에 @RequestMapping("/url")을 지정하며, GET 또는 POST 방식 등의 옵션을 줄 수 있다.
 - 해당되는 method가 실행된 후, return 페이지가 따로 정의되어 있지 않으면 RequestMapping("/url")에서 설정된 url로 다시 돌아간다.
+
+<상세 속성 정보>
+
+	- value : "value='/getXxx.do'"와 같은 형식의 매핑 url값이다. 디폴트 속성이기 때문에 value 정의하는 경우에는 생략 가능.
+	- method : GET, POST, HEAD 등으로 표현되는 HTTP Request method에 따라 requestMapping 가능. methid 값을 정의하지 않는 경우  모든 HTTP Request method에 대해서 처리. value 값은 클래스 선언에 정의한 @RequestMapping의 value값을 상속받는다.
+	- params : HTTP Request로 들어오는 파라미터 표현 'params={"params 1=a, 'param2}
+
+```java
+@RequestMapping(value="/", method=RequestMethod.GET)
+public String home(Locale, Model model){ }
+
+@RequestMapping("/hello.do")
+public ModelAndView hello(){ }
+
+@RequestMapping(value="/select1.do", method=RequestMethod.GET)
+public String select(){ }
+
+@RequestMapping(value="/insert1.do", method=RequestMethod.POST)
+public String insert(){ }
+```
+
+**@RequestParam**
+
+- 요청 파라미터(Query 문자열)를 메서드의 매개변수로 1:1 대응해서 받는 것이 @RequestParam 이다.
+
+```java
+public String hello(@RequestParam("name") String name, @RequestParam(value="pageNo", required=false) String pageNo) { }
+
+public ModelAndView searchInternal(@RequestParam("query") String query, 
+                                  @RequestParam("p") int pageNumber) { }
+
+public String getAllBoards(@RequestParam(value="currentPage", requred=false,
+                                        defaultValue="1")int currentPage, Model model) { }
+
+public String hello(String bookname, int bookPrice) { }
+
+public String check(@RequestHeader("User-Agent") String clientInfo) { }
+```
+
+**@ModelAttribute**
+
+- 도메인 오브젝트나 DTO 또는 VO의 프로퍼티에 요청 파라미터를 바인딩해서 한 번에 받는다. 
+- 하나의 오브젝트에 클라이언트의 요청 정보를 담아서 한 번에 전달되는 것이기 때문에 이를 커맨드 패턴에서 말하는 커맨드 오브젝트라고 부르기도 한다. 
+
+```java
+@RequestMapping(value="/user/add", method=RequestMethod.POST)
+public String add(@ModelAttribute User user){
+    ...
+}
+```
+
+- 컨트롤러가 리턴하는 모델에 파라미터로 전달한 오브젝트를 자동으로 추가해 준다. 이때 모델의 이름은 기본적으로 파라미터의 이름을 따른다.
+
+```java
+public String update(@ModelAttribute("currentUser") User user){ 
+   //update()컨트롤러가 DispatcherServlet에게 돌려주는 모델 맵에는 "cuerrentUser"라는 키로 User 오브젝트가 저장되어 있게 된다.
+}
+```
+
+**@PathVariable**
+
+- url의 특정 부분을 변수화 하는 기능을 지원하는 어노테이션
+- @RequestMapping에서는 변수를 {}로 감싸주고, 메서드의 파라미터에 @PathVariable을 지정하여 메서드에서 파라미터로 활용
+
+```java
+@RequestMapping(value="/board/list_controller/{currentPage}/test/{name}")
+public String getAllBoards(@PathVariable(value="currentPage") int currentPage,
+                          @PathVariable(value="name") String name, Model model) { ... }
+```
+
+**@RequestBody & @ResponseBody**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
