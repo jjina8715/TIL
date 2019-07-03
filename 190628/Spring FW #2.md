@@ -237,7 +237,17 @@ public String getAllBoards(@PathVariable(value="currentPage") int currentPage,
 
 **@RequestBody & @ResponseBody**
 
+- 웹 서비스와 REST 방식이 시스템을 구성하는 주요 요소로 자리 잡으면서 웹 시스템 간에 XML이나JSON 등의 형식으로 데이터를 주고 받는 경우가 증가
+- 스프링 MVC는 클라이언트에서 전송한 XML 데이터나 JSON  또는 기타 데이터를 컨트롤러에서 DOM 객체나 자바 객체로 변환해서 받을 수 있는 기능(수신)을 제공, 자바 객체를 XML이나 JSON 또는 기타 형식으로 변환해서 전송할 수 있는 기능(송신)을 제공
+- @RequestBody 어노테이션과 @ResponseBody 어노테이션은 각각 HTTP 요청 몸체를 자바 객체로 변환하고 자바 객체를 HTTP 응답 몸체로 변환하는 데 사용
+- @RequestBody은 전달받는 데에, @ResponseBody는 전송하는 데에 이용
 
+**@RestController**
+
+- @Controller를 상소과여 @Controller + @ResponseBody의 기능을 지원
+- Restful 웹 서비스를 구현할 때 응답은 항상 응답 바디(response body)에 보내져야 하는데 이를 위해 스프링 4.0에서 @RestController를 제공
+- 도메인 객체를 Web Service로 노출 가능하며, 각각의 @RequestMapping method에 @ResponseBody할 필요가 없어진다. 그러므로 @ResponseBody를 이용하여 JSON or XML 포맷으로 데이터를 넘길 수 있다.
+- 
 
 
 
