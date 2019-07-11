@@ -1,6 +1,6 @@
 package vo;
 
-public class SearchType {
+public class SearchTypeVO {
 	private String district;
 	private String month;
 	private String type;

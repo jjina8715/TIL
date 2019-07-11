@@ -3,11 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.FestivalMapper">
- 	<select id="selectFestival" parameterType="vo.SearchType"  resultType="vo.FestivalVO">
-    	select id, writer, title, content, 
-    	to_char(writedate,'yyyy/mm/dd HH24:mi') writedate, cnt 
+ 	<select id="selectFestival" parameterType="vo.SearchTypeVO"  resultType="vo.FestivalVO">
+    	select fid, name, place, lat, lng, type, fcontent, hostinfo
     	from festival
-    	where 
+    	where type = #{type} and palce = #{place} and fid = (
+    		select fid
+    		from festadate
+    		where month = #{month}
+    	)
  	</select>
 
 </mapper>
