@@ -1,9 +1,11 @@
 package vo;
 
-public class SearchTypeVO {
+public class SearchInfoVO {
 	private String district;
 	private String month;
 	private String type;
+	private int startRow;
+	private int size;
 	public String getDistrict() {
 		return district;
 	}
@@ -25,5 +27,17 @@ public class SearchTypeVO {
 	@Override
 	public String toString() {
 		return "SearchType [district=" + district + ", month=" + month + ", type=" + type + "]";
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getSize() {
+		return size;
+	}
+	public void setSize(int size) {
+		this.size = size;
 	}	
 }

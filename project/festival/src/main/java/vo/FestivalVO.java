@@ -1,14 +1,15 @@
 package vo;
 
+import java.sql.Blob;
+import java.util.List;
+
 public class FestivalVO {
 	private int fid;
 	private String name;
-	private String place;
 	private float lat;
 	private float lng;
-	private String type;
 	private String fcontent;
-	private String hostinfo;
+	private Blob mainimage;
 	public int getFid() {
 		return fid;
 	}
@@ -20,12 +21,6 @@ public class FestivalVO {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getPlace() {
-		return place;
-	}
-	public void setPlace(String place) {
-		this.place = place;
 	}
 	public float getLat() {
 		return lat;
@@ -39,27 +34,22 @@ public class FestivalVO {
 	public void setLng(float lng) {
 		this.lng = lng;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public String getFcontent() {
 		return fcontent;
 	}
 	public void setFcontent(String fcontent) {
 		this.fcontent = fcontent;
 	}
-	public String getHostinfo() {
-		return hostinfo;
-	}
-	public void setHostinfo(String hostinfo) {
-		this.hostinfo = hostinfo;
-	}
 	@Override
 	public String toString() {
-		return "FestivalVO [fid=" + fid + ", name=" + name + ", place=" + place + ", lat=" + lat + ", lng=" + lng
-				+ ", type=" + type + ", fcontent=" + fcontent + ", hostinfo=" + hostinfo + "]";
+		return "FestivalVO [fid=" + fid + ", name=" + name + ", lat=" + lat + ", lng=" + lng + ", fcontent=" + fcontent
+				+ ", image=" + mainimage + "]";
 	}
+	public Blob getMainimage() {
+		return mainimage;
+	}
+	public void setMainimage(Blob mainimage) {
+		this.mainimage = mainimage;
+	}
+
 }
