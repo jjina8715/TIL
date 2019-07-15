@@ -65,6 +65,13 @@ public class FestivalList {
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
 	}
+	public boolean hasNoFestivals() {
+		return total == 0;
+	}
+
+	public boolean hasFestivals() {
+		return total > 0;
+	}
 	@Override
 	public String toString() {
 		return "FestivalList [total=" + total + ", currentPage=" + currentPage + ", list=" + list + ", totalPages="

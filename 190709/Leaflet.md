@@ -48,3 +48,5 @@
 - map에 GeoJSON 추가
   - $.getJSON(), bindPopup() 사용
   - bean GeoJSON 레이어를 먼저 생성한 뒤 변수에 할당한 다음 나중에 GeoData 정보를 설정 가능 / L.getJSON(), L.geoJson()
+- geocoding : 주소를 주면 위도, 경도를 알 수 있는 구글의 api
+- geolocation.getCurrentPosition(성공시 함수, 실패시 함수) : 실행되는 컴퓨터의 위치를 position으로 반환하는 navigator의 함수 

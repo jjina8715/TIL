@@ -6,6 +6,7 @@ public class SearchInfoVO {
 	private String type;
 	private int startRow;
 	private int size;
+	private String action;
 	public String getDistrict() {
 		return district;
 	}
@@ -26,7 +27,8 @@ public class SearchInfoVO {
 	}
 	@Override
 	public String toString() {
-		return "SearchType [district=" + district + ", month=" + month + ", type=" + type + "]";
+		return "SearchInfoVO [district=" + district + ", month=" + month + ", type=" + type + ", startRow=" + startRow
+				+ ", size=" + size + ", action=" + action + "]";
 	}
 	public int getStartRow() {
 		return startRow;
@@ -40,4 +42,10 @@ public class SearchInfoVO {
 	public void setSize(int size) {
 		this.size = size;
 	}	
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
 }

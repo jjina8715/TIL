@@ -1,15 +1,25 @@
 package vo;
 
-import java.sql.Blob;
-import java.util.List;
-
 public class FestivalVO {
 	private int fid;
 	private String name;
 	private float lat;
 	private float lng;
-	private String fcontent;
-	private Blob mainimage;
+	private String place;
+	private String opendate;
+	private String closedate;
+	public String getOpendate() {
+		return opendate;
+	}
+	public void setOpendate(String opendate) {
+		this.opendate = opendate;
+	}
+	public String getClosedate() {
+		return closedate;
+	}
+	public void setClosedate(String closedate) {
+		this.closedate = closedate;
+	}
 	public int getFid() {
 		return fid;
 	}
@@ -34,22 +44,16 @@ public class FestivalVO {
 	public void setLng(float lng) {
 		this.lng = lng;
 	}
-	public String getFcontent() {
-		return fcontent;
-	}
-	public void setFcontent(String fcontent) {
-		this.fcontent = fcontent;
-	}
 	@Override
 	public String toString() {
-		return "FestivalVO [fid=" + fid + ", name=" + name + ", lat=" + lat + ", lng=" + lng + ", fcontent=" + fcontent
-				+ ", image=" + mainimage + "]";
+		return "FestivalVO [fid=" + fid + ", name=" + name + ", lat=" + lat + ", lng=" + lng + ", place=" + place
+				+ ", opendate=" + opendate + ", closedate=" + closedate + "]";
 	}
-	public Blob getMainimage() {
-		return mainimage;
+	public String getPlace() {
+		return place;
 	}
-	public void setMainimage(Blob mainimage) {
-		this.mainimage = mainimage;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 
 }

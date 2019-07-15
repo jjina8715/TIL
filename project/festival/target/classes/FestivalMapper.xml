@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.FestivalMapper">
  	<select id="selectFestival" parameterType="vo.SearchInfoVO"  resultType="vo.FestivalVO">
- 		<![CDATA[  select f.fid, f.name, f.lat, f.lng, f.fcontent, f.mainimage
- 		from (select fid, name, lat, lng, fcontent, mainimage
+ 		<![CDATA[  select f.fid, f.name, f.lat, f.lng, f.place, f.opendate, f.closedate
+ 		from (select fid, name, lat, lng, place, to_char(opendate, 'yyyy/mm/dd') opendate, to_char(closedate, 'yyyy/mm/dd') closedate
     		from festival
     		where type like '%'||#{type}||'%' and place like '%'||#{place}||'%' and fid = (
     			select fid
@@ -13,7 +13,7 @@
     			where to_char(opendate, 'mm') like '%'||#{month}||'%') 
     		order by fid desc
     		) f
-    	where ROWNUM >= #{startRow} and ROWNUM <= #{size};]]>
+    	where ROWNUM >= #{startRow} and ROWNUM <= #{size} and img.fid = f.fid]]>
  	</select>
  	<select id="selectFestivalImage" parameterType="_int" resultType="java.sql.Blob">
  		select image
