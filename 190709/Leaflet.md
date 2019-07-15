@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="..." crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="..." crossorigin=""/>
 
-<div id="mapid" style="width: ; height= ;"></div>
+<div id="mapid" style="width:500; height= 500;"></div>
 ```
 
 1. map 생성
