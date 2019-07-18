@@ -33,7 +33,7 @@
 		<c:forEach var="vo" items="${resultlist.list }">
 			<tr>
 				<td>${vo.nid }</td>
-				<td onclick="movecontent('${vo.nid}')">${vo.title }</td>
+				<td onclick="location.href='/festival/notice/ncontent?nid='${vo.nid}'">${vo.title }</td>
 				<td>${vo.writer }</td>
 				<td>${vo.uploaddate }</td>
 				<td>${vo.cnt }</td>
@@ -59,8 +59,6 @@
 <c:when test='${!empty listmsg }'>
 		<h3>${listmsg }</h3>
 </c:when>
-
-
 <c:when test='${!empty content }'>
 	<table>
 		<tr><td>제목</td><td>${content.title }</td></tr>
@@ -77,11 +75,5 @@
 	</form>
 </c:when>
 </c:choose>
-<script>
-function movecontent(nid){
-	location.href="/festival/notice/rcontent?nid="+nid;
-}
-</script>
-
 </body>
 </html>

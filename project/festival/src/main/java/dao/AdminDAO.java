@@ -25,4 +25,5 @@ public class AdminDAO {
 		statement = "resource.AdminMapper.deleteReview";
 		return session.delete(statement, review_id);
 	}
+	
 }

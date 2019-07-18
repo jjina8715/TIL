@@ -49,7 +49,7 @@ public class NoticeController {
 		tmplist = dao.search(noticeinfo);
 
 		if (tmplist.size() == 0) {
-			mav.addObject("listMsg", "검색하신 정보에 해당하는 공지사항이 존재하지 않습니다.");
+			mav.addObject("listMsg", "공지사항이 존재하지 않습니다.");
 		} else {
 			mav.addObject("resultlist", new PageList<NoticeVO>(total, pageNo, size, tmplist));
 		}
@@ -57,7 +57,7 @@ public class NoticeController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/notice/rcontent", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice/ncontent", method = RequestMethod.GET)
 	public ModelAndView showNoticeContent(int nid) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("content", dao.selectNotice(nid));
