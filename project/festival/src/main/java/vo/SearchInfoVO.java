@@ -1,6 +1,7 @@
 package vo;
 
 public class SearchInfoVO {
+	private String city;
 	private String district;
 	private String month;
 	private String type;
@@ -47,5 +48,11 @@ public class SearchInfoVO {
 	}
 	public void setAction(String action) {
 		this.action = action;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

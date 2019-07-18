@@ -3,29 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="resource.FestivalMapper">
- 	<select id="selectFestival" parameterType="vo.SearchInfoVO"  resultType="vo.FestivalVO">
- 		<![CDATA[  select f.fid, f.name, f.lat, f.lng, f.place, f.opendate, f.closedate
- 		from (select fid, name, lat, lng, place, to_char(opendate, 'yyyy/mm/dd') opendate, to_char(closedate, 'yyyy/mm/dd') closedate
-    		from festival
-    		where type like '%'||#{type}||'%' and place like '%'||#{place}||'%' and fid = (
-    			select fid
-    			from festadate
-    			where to_char(opendate, 'mm') like '%'||#{month}||'%') 
-    		order by fid desc
+ 	<select id="selectFestival" parameterType="vo.SearchFestaInfoVO"  resultType="vo.FestivalVO">
+ 		select f.fid, f.name, f.lat, f.lng, to_char(f.opendate, 'yyyy.mm.dd') opendate, to_char(f.closedate, 'yyyy.mm.dd') closedate, f.place
+ 		from (select row_number() over(order by f.fid desc) as rnum, f.place, f.fid, f.name, f.lat, f.lng, d.opendate, d.closedate 
+    		from festival f, festadate d
+    		where type like '%'||#{type}||'%' and place like '%'||#{district}||'%' and f.fid = d.fid and
+    				to_char(d.opendate, 'mm') like '%'||#{month}||'%'
     		) f
-    	where ROWNUM >= #{startRow} and ROWNUM <= #{size} and img.fid = f.fid]]>
+    	where <![CDATA[rnum BETWEEN #{startRow} and #{endRow}]]>
  	</select>
- 	<select id="selectFestivalImage" parameterType="_int" resultType="java.sql.Blob">
- 		select image
- 		from festaimg
- 		where fid=${fid}
- 	</select>
- 	<select id="selectFestivalCount" parameterType="vo.SearchInfoVO" resultType="_int">
- 		select count(*) from festival
- 		where type like '%'||#{type}||'%' and place like '%'||#{place}||'%' and fid = (
-    		select fid
-    		from festadate
-    		where to_char(opendate, 'mm') like '%'||#{month}||'%'
-    	)
+ 	<select id="selectFestivalCount" parameterType="vo.SearchFestaInfoVO" resultType="_int">
+ 		select count(*) 
+ 		from festival f, festadate d
+    	where type like '%'||#{type}||'%' and place like '%'||#{district}||'%' and f.fid = d.fid and
+    				to_char(d.opendate, 'mm') like '%'||#{month}||'%'
  	</select>
 </mapper>

@@ -90,7 +90,8 @@
 						<td colspan="2"><input class="form-control" type="text" id="userEmail" name="userEmail" maxLength="20" placeholder="이메일을 입력해주세요."></td>
 					</tr>
 					<tr>
-						<td style="text-align: right" colspan="3"><h5 style="color: red;" id="passwordCheckMessage"></h5><input class="btn btn-primary pull-right" type="submit" value="회원가입"></td>
+						<td style="text-align: right" colspan="3"><h5 style="color: red;" id="passwordCheckMessage"></h5>
+						<input class="btn btn-primary pull-right" type="submit" value="회원가입"></td>
 					</tr>
 				</tbody>
 			</table>
