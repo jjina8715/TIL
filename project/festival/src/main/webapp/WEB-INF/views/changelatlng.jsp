@@ -15,7 +15,7 @@
 		var info = "";
 		<c:forEach var="item" items="${resultlist}">
 			$.getJSON("https://maps.googleapis.com/maps/api/geocode"+
-					"/json?key=AIzaSyD-nx_y7aBlJgfgVZRaIwMbnShQJsxpryY&address="+"${item.getPlace()}", function(data) {
+					"/json?key=AIzaSyDYKsWmzqw3VI4BRQWl8n7nD2O1A7JmI88&address="+"${item.getPlace()}", function(data) {
 				info="lat="+data.results[0].geometry.location.lat+"&lng="+data.results[0].geometry.location.lng
 					+"&fid="+"${item.getFid()}";
 				 $.ajax({
@@ -30,7 +30,6 @@
 				        }
 				      });
 				});	
-			
 		</c:forEach>
 		
 	});

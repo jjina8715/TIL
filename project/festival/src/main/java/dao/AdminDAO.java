@@ -25,5 +25,9 @@ public class AdminDAO {
 		statement = "resource.AdminMapper.deleteReview";
 		return session.delete(statement, review_id);
 	}
+	public int deleteReport(int report_id) {
+		String statement = "resource.AdminMapper.deleteReport";
+		return session.delete(statement, report_id);	
+	}
 	
 }

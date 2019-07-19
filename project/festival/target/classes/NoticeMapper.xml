@@ -11,6 +11,11 @@
         	) 
  		where <![CDATA[rnum BETWEEN #{startRow} and #{endRow}]]>
  	</select>
+ 	<select id="selectAllNotice" parameterType="vo.SearchNoticeInfoVO" resultType="vo.NoticeVO">
+ 		select nid, title, writer, to_char(uploaddate, 'yyyy.mm.dd') uploaddate, cnt
+ 		from notice 
+        where ${searchType} like '%'||#{key}||'%'
+ 	</select>
  	<select id="selectNoticeContent" parameterType="_int" resultType="vo.NoticeVO">
  		select nid, title, ncontent, writer, to_char(uploaddate, 'yyyy.mm.dd HH24:mi') uploaddate, cnt
  		from notice
@@ -21,11 +26,20 @@
  		from notice
  		where ${searchType} like '%'||#{key}||'%'
  	</select>
- 	 <delete id="deleteNotice" parameterType="_int">
-    	delete from notice where nid = #{nid}
-    </delete>
-    <update id="updateNotice" parameterType="vo.NoticeVO">
-    	update notice
-    	set 
-    </update>
+ 	<update id="updateNotice" parameterType="vo.NoticeVO">
+ 		update notice
+ 		set title=#{title},
+ 			ncontent=#{ncontent}
+ 		where nid = #{nid}
+ 	</update>
+ 	<update id="updateNoticeCnt" parameterType="_int">
+ 		update notice
+ 		set cnt=cnt+1
+ 		where nid=#{nid}
+ 	</update>
+ 	<delete id="deleteNotice" parameterType="_int">
+ 		delete 
+ 		from notice
+ 		where nid=#{nid}
+ 	</delete>
 </mapper>

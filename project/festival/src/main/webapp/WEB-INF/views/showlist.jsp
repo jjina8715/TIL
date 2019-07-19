@@ -128,8 +128,8 @@ a.hover{
 	       iconSize: [15, 15]
 	   });
 		for(var i in info){
-			lat = info[i][1]*1;
-			lng = info[i][0]*1;
+			lat = info[i][0]*1;
+			lng = info[i][1]*1;
 			L.marker([lat,lng],{icon:myIcon}).bindPopup('<a href="detail&fid='+info[i][3]+'">'+ info[i][2]+'</a>').addTo(map);
 		}
 	});

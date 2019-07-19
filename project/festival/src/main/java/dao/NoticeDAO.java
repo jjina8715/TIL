@@ -24,8 +24,30 @@ public class NoticeDAO {
 		return session.selectOne(statement, noticeinfo);
 	}
 
-	public NoticeVO selectNotice(int nid) {
-		String statement = "resource.NoticeMapper.selectNoticeContent";
+	public NoticeVO selectNotice(int nid, String string) {
+		String statement;
+		
+		if(string.equals("mem")) {
+			statement = "resource.NoticeMapper.updateNoticeCnt";
+			session.update(statement, nid);
+		}
+		statement = "resource.NoticeMapper.selectNoticeContent";
 		return session.selectOne(statement,nid);
+	}
+
+	public List<NoticeVO> selectlist(SearchNoticeInfoVO noticeinfo) {
+		String statement = "resource.NoticeMapper.selectAllNotice";
+		List<NoticeVO> list = session.selectList(statement, noticeinfo);
+		return list;
+	}
+
+	public int updateNotice(NoticeVO info) {
+		String statement = "resource.NoticeMapper.updateNotice";
+		return session.update(statement,info);
+	}
+
+	public int deleteNotice(int nid) {
+		String statement = "resource.NoticeMapper.deleteNotice";
+		return session.update(statement,nid);
 	}
 }

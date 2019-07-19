@@ -1,18 +1,12 @@
 package my.spring.festival;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -47,7 +41,7 @@ public class FestivalController {
 		festainfo.setEndRow((pageNo - 1) * size + size - 1);
 		tmplist = dao.search(festainfo);
 		if (tmplist.size() == 0) {
-			mav.addObject("listMsg", "검색하신 정보에 해당하는 축제가 존재하지 않습니다.");
+			mav.addObject("listmsg", "검색하신 정보에 해당하는 축제가 존재하지 않습니다.");
 		} else {
 			mav.addObject("resultlist", new PageList<FestivalVO>(total, pageNo, size, tmplist));
 		}

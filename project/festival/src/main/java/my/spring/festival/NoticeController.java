@@ -32,24 +32,29 @@ public class NoticeController {
 			SearchNoticeInfoVO info) {
 		ModelAndView mav = new ModelAndView();
 		List<NoticeVO> tmplist = null;
-		int pageNo = info.getPageNo();
+		int pageNo = info.getPageNo();	
 		if (info.getSearchType()==null) {
 			if(pageNo!=0) {
-				noticeinfo.setSearchType("title");
-				noticeinfo.setKey("");
-				noticeinfo.setPageNo(pageNo);
-			}else
+				if(info.getAction()==null) {//main에서 넘어올 때
+					noticeinfo.setSearchType("title");
+					noticeinfo.setKey("");
+					noticeinfo.setPageNo(pageNo);
+					noticeinfo.setAction(null);
+				}else if(info.getAction().equals("paging")){// 페이지 눌렸을 때
+						noticeinfo.setPageNo(pageNo);
+				}
+			}else {//content에서 목록보기
 				pageNo = noticeinfo.getPageNo();
-		}else {
-			noticeinfo = info;
+			}
+		}else {//검색
+				noticeinfo = info;
 		}
 		int total = dao.selectSearchCount(noticeinfo);
 		noticeinfo.setStartRow((pageNo - 1) * size + 1);
 		noticeinfo.setEndRow((pageNo - 1) * size + size);
 		tmplist = dao.search(noticeinfo);
-
 		if (tmplist.size() == 0) {
-			mav.addObject("listMsg", "공지사항이 존재하지 않습니다.");
+			mav.addObject("listmsg", "공지사항이 존재하지 않습니다.");
 		} else {
 			mav.addObject("resultlist", new PageList<NoticeVO>(total, pageNo, size, tmplist));
 		}
@@ -60,7 +65,7 @@ public class NoticeController {
 	@RequestMapping(value = "/notice/ncontent", method = RequestMethod.GET)
 	public ModelAndView showNoticeContent(int nid) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("content", dao.selectNotice(nid));
+		mav.addObject("content", dao.selectNotice(nid, "mem"));
 		mav.setViewName("shownotice");
 		return mav;
 	}

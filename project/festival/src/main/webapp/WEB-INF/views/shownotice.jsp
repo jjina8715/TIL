@@ -14,12 +14,12 @@
 <c:when test='${!empty resultlist }'>
 <form action="notice" method="get">
 	<input type="hidden" name="pageNo" value="1">
-	<select name="searchType">
+	<select id="searchType" name="searchType">
 		<option value="title">제목</option>
 		<option value="ncontent">내용</option>
 		<option value="writer">작성자</option>
 	</select>
-	<input name="key" id='key' type="text">
+	<input name="key" id='key' type="text" value="<c:if test='${!empty previnfo }'>${previnfo.key }</c:if>">
 	<input type="submit" value="검색">
 </form>
 	<table>
@@ -33,7 +33,7 @@
 		<c:forEach var="vo" items="${resultlist.list }">
 			<tr>
 				<td>${vo.nid }</td>
-				<td onclick="location.href='/festival/notice/ncontent?nid='${vo.nid}'">${vo.title }</td>
+				<td onclick="location.href='/festival/notice/ncontent?nid=${vo.nid}'">${vo.title }</td>
 				<td>${vo.writer }</td>
 				<td>${vo.uploaddate }</td>
 				<td>${vo.cnt }</td>
@@ -43,13 +43,13 @@
 			<tr>
 				<td>
 					<c:if test="${resultlist.startPage > 5}">
-						<a href="notice?pageNo=${resultlist.startPage - 5}">[이전]</a>
+						<a href="notice?pageNo=${resultlist.startPage - 5}&action=paging">[이전]</a>
 					</c:if> 
 					<c:forEach var="pNo" begin="${resultlist.startPage}" end="${resultlist.endPage}">
-						<a href="notice?pageNo=${pNo}">[${pNo}]</a>
+						<a href="notice?pageNo=${pNo}&action=paging">[${pNo}]</a>
 					</c:forEach> 
 					<c:if test="${resultlist.endPage < resultlist.totalPages}">
-						<a href="notice?pageNo=${resultlist.startPage + 5}">[다음]</a>
+						<a href="notice?pageNo=${resultlist.startPage + 5}&action=paging">[다음]</a>
 					</c:if>
 				</td>
 			</tr>
@@ -75,5 +75,10 @@
 	</form>
 </c:when>
 </c:choose>
+<script>
+<c:if test='${!empty previnfo}'>
+	$('#searchType').val('${previnfo.searchType}');
+</c:if>
+</script>
 </body>
 </html>

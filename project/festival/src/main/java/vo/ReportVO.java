@@ -5,6 +5,7 @@ public class ReportVO {
 	private int report_id;
 	private String report_mid;
 	private String rcontent;
+	private int review_id;
 	private String review_mid;
 	private String writedate;
 	private String name; //festival name
@@ -54,6 +55,12 @@ public class ReportVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getReview_id() {
+		return review_id;
+	}
+	public void setReview_id(int review_id) {
+		this.review_id = review_id;
 	}
 	
 }
