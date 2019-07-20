@@ -8,8 +8,28 @@
 <head>
 <meta charset="UTF-8">
 <title>festa-공지사항</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" 
+	integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" 
+	crossorigin="anonymous">
+<style type="text/css">
+
+</style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+	      <a class="navbar-brand" href="index.html">FESTAs</a>      
+      	<div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item "><a href="" class="nav-link">Main</a></li>
+	          <li class="nav-item active"><a href="notice" class="nav-link">Notice</a></li>
+	          <li class="nav-item"><a href="" class="nav-link">Login</a></li>
+	          <li class="nav-item"><a href="" class="nav-link">Logout</a></li>
+	          <li class="nav-item"><a href="adminpage" class="nav-link">MyPage</a></li>
+	        </ul>
+	   	</div>
+	 </div>  
+</nav>
 <c:choose>
 <c:when test='${!empty resultlist }'>
 <form action="notice" method="get">
@@ -19,7 +39,7 @@
 		<option value="ncontent">내용</option>
 		<option value="writer">작성자</option>
 	</select>
-	<input name="key" id='key' type="text" value="<c:if test='${!empty previnfo }'>${previnfo.key }</c:if>">
+	<input name="key" id='key' type="text">
 	<input type="submit" value="검색">
 </form>
 	<table>
@@ -76,9 +96,6 @@
 </c:when>
 </c:choose>
 <script>
-<c:if test='${!empty previnfo}'>
-	$('#searchType').val('${previnfo.searchType}');
-</c:if>
 </script>
 </body>
 </html>

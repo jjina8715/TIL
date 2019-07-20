@@ -15,6 +15,7 @@
  		select nid, title, writer, to_char(uploaddate, 'yyyy.mm.dd') uploaddate, cnt
  		from notice 
         where ${searchType} like '%'||#{key}||'%'
+         order by nid desc
  	</select>
  	<select id="selectNoticeContent" parameterType="_int" resultType="vo.NoticeVO">
  		select nid, title, ncontent, writer, to_char(uploaddate, 'yyyy.mm.dd HH24:mi') uploaddate, cnt
@@ -42,4 +43,8 @@
  		from notice
  		where nid=#{nid}
  	</delete>
+ 	<insert id="insertNotice" parameterType="vo.NoticeVO">
+ 		insert into notice(nid, title, ncontent, uploaddate, writer, cnt) 
+ 		values(notice_seq.nextval, #{title}, #{ncontent}, sysdate, #{writer}, 0)
+ 	</insert>
 </mapper>

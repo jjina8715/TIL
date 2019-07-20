@@ -71,6 +71,7 @@ public class AdminController {
 			SearchNoticeInfoVO info){
 		ModelAndView mav = new ModelAndView();
 		List<NoticeVO> list = null;
+		
 		if (info.getAction().equals("list")) {
 			noticeinfo.setSearchType("title");
 			noticeinfo.setKey("");
@@ -83,7 +84,6 @@ public class AdminController {
 			System.out.println("0");
 			mav.addObject("listmsg", "공지사항이 존재하지 않습니다.");
 		} else {
-			System.out.println("list");
 			mav.addObject("noticelist", list);
 		}
 		mav.setViewName("adminpage");
@@ -106,6 +106,9 @@ public class AdminController {
 			mav = showNoticeContent(info.getNid());
 		}else if(action.equals("삭제")) {
 			noticedao.deleteNotice(info.getNid());
+			mav = manageNotice(noticeinfo, noticeinfo);
+		}else if(action.equals("작성")) {
+			noticedao.insertNotice(info);
 			mav = manageNotice(noticeinfo, noticeinfo);
 		}
 	    return mav;

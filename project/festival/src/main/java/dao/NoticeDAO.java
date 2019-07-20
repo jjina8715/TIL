@@ -50,4 +50,9 @@ public class NoticeDAO {
 		String statement = "resource.NoticeMapper.deleteNotice";
 		return session.update(statement,nid);
 	}
+
+	public int insertNotice(NoticeVO info) {
+		String statement = "resource.NoticeMapper.insertNotice";
+		return session.update(statement,info);
+	}
 }
