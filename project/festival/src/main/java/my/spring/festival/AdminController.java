@@ -99,7 +99,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/adminpage/managenotice")
-	public ModelAndView updateNotice(@ModelAttribute("adminnotice") SearchNoticeInfoVO noticeinfo,HttpServletRequest request, NoticeVO info, String action) {
+	public ModelAndView updateNotice(@ModelAttribute("adminnotice") SearchNoticeInfoVO noticeinfo,
+												HttpServletRequest request, NoticeVO info, String action) {
 		ModelAndView mav = null;
 		if(action.equals("수정")) {
 			noticedao.updateNotice(info);

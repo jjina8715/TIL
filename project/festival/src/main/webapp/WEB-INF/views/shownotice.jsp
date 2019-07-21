@@ -12,24 +12,49 @@
 	integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" 
 	crossorigin="anonymous">
 <style type="text/css">
-
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import	url('https://fonts.googleapis.com/css?family=Notable&display=swap');
+#logo {
+	font-family: Notable;
+}
+table{
+	width:70%
+}
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-      <div class="container">
-	      <a class="navbar-brand" href="index.html">FESTAs</a>      
-      	<div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item "><a href="" class="nav-link">Main</a></li>
-	          <li class="nav-item active"><a href="notice" class="nav-link">Notice</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Login</a></li>
-	          <li class="nav-item"><a href="" class="nav-link">Logout</a></li>
-	          <li class="nav-item"><a href="adminpage" class="nav-link">MyPage</a></li>
-	        </ul>
-	   	</div>
-	 </div>  
-</nav>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
+    <div class="container">
+
+      <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank" id="logo">
+        <strong>festas</strong>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://mdbootstrap.com/docs/jquery/" target="_blank">Notice</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">new</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 <c:choose>
 <c:when test='${!empty resultlist }'>
 <form action="notice" method="get">
@@ -42,7 +67,7 @@
 	<input name="key" id='key' type="text">
 	<input type="submit" value="검색">
 </form>
-	<table>
+	<table class="table table-stripaed" style="text-align: center; border: 1px solid #dddddd; height: 70%">
 		<tr>
 			<td>번호</td>
 			<td>제목</td>
@@ -59,17 +84,17 @@
 				<td>${vo.cnt }</td>
 			</tr>
 		</c:forEach>
+	</table>
+	<table class="table" style="text-align: center; border: 1px solid #dddddd">
 		<c:if test="${resultlist.hasVs()}">
 			<tr>
 				<td>
 					<c:if test="${resultlist.startPage > 5}">
-						<a href="notice?pageNo=${resultlist.startPage - 5}&action=paging">[이전]</a>
-					</c:if> 
-					<c:forEach var="pNo" begin="${resultlist.startPage}" end="${resultlist.endPage}">
-						<a href="notice?pageNo=${pNo}&action=paging">[${pNo}]</a>
-					</c:forEach> 
-					<c:if test="${resultlist.endPage < resultlist.totalPages}">
-						<a href="notice?pageNo=${resultlist.startPage + 5}&action=paging">[다음]</a>
+						<a href="list?pageNo=${resultlist.startPage - 5}&action=">[이전]</a>
+					</c:if> <c:forEach var="pNo" begin="${resultlist.startPage}" end="${resultlist.endPage}">
+						<a href="list?pageNo=${pNo}&action=">[${pNo}]</a>
+					</c:forEach> <c:if test="${resultlist.endPage < resultlist.totalPages}">
+						<a href="list?pageNo=${resultlist.startPage + 5}&action=paging">[다음]</a>
 					</c:if>
 				</td>
 			</tr>

@@ -20,24 +20,18 @@
 #logo {
 	font-family: Notable;
 }
-.wrapper {
-	text-align: center;
-	box-align: center;
-	display: grid;
-}
-.menu {
-	grid-column: 1;
-}
-
-.content {
-	grid-column: 1;
+html, body, header{
+	height: 100%;
 }
 textarea{
 	width:300px;
 	height:150px;
 }
 table{
-	width:70%
+	width:70%;
+}
+#list_title.hover{
+	font-weight:bold;
 }
 </style>
 </head>
@@ -79,9 +73,11 @@ table{
       </div>
     </div>
   </nav>
-	<div class="wrapper">
-		<div class="menu">
-			<table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+        	<table>
 				<tr onclick="location.href='/festival/adminpage/notice?action=list'">
 					<td>공지사항 관리</td>
 				</tr>
@@ -89,9 +85,9 @@ table{
 					<td>리뷰 신고함</td>
 				</tr>
 			</table>
-		</div>
-		<div class="content">
-			<c:choose>
+        </div>
+        <div class="col-sm-9">
+        	<c:choose>
 				<c:when test="${!empty reportlist }">
 				<form action="report/del">
 					<input type="submit" name="action" value="선택된 신고 삭제">
@@ -117,10 +113,9 @@ table{
 					</table>
 					</form>
 				</c:when>
-				
-				
+					
 				<c:when test="${!empty noticelist }">
-				    <button id='b' onclick="displayDiv(1)">공지사항 작성</button>
+				    <button id="createBtn" type="button" class="btn btn-dark" data-toggle="modal">공지사항 작성</button>
 				    <form action="/festival/adminpage/notice" method="get">	
 						<select name="searchType">
 							<option value="title">제목</option>
@@ -140,7 +135,7 @@ table{
 						<c:forEach var="vo" items="${noticelist }">
 							<tr>
 								<td>${vo.nid }</td>
-								<td onclick="location.href='/festival/adminpage/ncontent?nid=${vo.nid}'">${vo.title }</td>
+								<td id="list_title" data-toggle="modal" >${vo.title }</td>
 								<td>${vo.writer }</td>
 								<td>${vo.uploaddate }</td>
 								<td>${vo.cnt }</td>
@@ -149,61 +144,95 @@ table{
 					</table>
 				</c:when>
 
-				<c:when test='${!empty content }'>
-				<form action="/festival/adminpage/managenotice" method="post">
-				<input type="hidden" name="nid" value='${content.nid }'>
-					<table class="table table-stripaed" style="text-align: center; border: 1px solid #dddddd; height: 70%">
-						<tr>
-							<td>제목</td>
-							<td><input type="text" name="title" value='${content.title }'></td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td>${content.writer}</td>
-							<td>번호</td>
-							<td>${content.nid }</td>
-						</tr>
-						<tr>
-							<td>작성일</td>
-							<td>${content.uploaddate}</td>
-							<td>조회수</td>
-							<td>${content.cnt }</td>
-						</tr>
-					</table>
-					<hr>
-					<div>
-					<textarea name="ncontent">${content.ncontent }</textarea></div>
-					<hr>
-					<input type="submit" name="action" value="수정">
-					<input type="submit" name="action" value="삭제">
-					</form>
-					<form action="/festival/adminpage/notice">
-					<input type="hidden" name="action" value="list">
-						<input type="submit" value="목록보기">
-					</form>
-				</c:when>
-
 				<c:when test='${!empty listmsg }'>
 					<h3>${listmsg }</h3>
 				</c:when>
 			</c:choose>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="noticeModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 id="modal-title" class="modal-title"></h4>
+			</div>
+			<div class="modal-body">
+				<table class="table">
+					<tr>
+						<td>제목</td>
+						<td><input class="form-control" id="title" type="text" required></td>
+					</tr>
+					<tr>
+						<td><textarea class="form-control" id="ncontent" rows="10" required></textarea></td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<button id="modalSumit" type="button" class="btn btn-sucess">작성</button>
+				<button type="button" class="btn btn-defalut" data-dismiss="modal">닫기</button>
+			</div>
 		</div>
 	</div>
-		<div class="content">
-	<form id="write" action="/festival/adminpage/managenotice" method="post" style="display:none">
-		<h4>공지사항 작성</h4>
-		제목 <input type="text" name="title" ><br>
-		작성자 <input type="text" name="writer" value="관리자"><br>
-		내용 <br>
-		<textarea name="ncontent"></textarea><br>
-		<input type="submit" name="action" value="작성">
-		<input type="button" value="취소" onclick="displayDiv(2);">
-	</form>
-	</div>
+</div>
 	<script>
-	$('input[name=check_all]').on('change', function(){
-		  $('input[name=check]').prop('checked', this.checked);
+	var action = '';
+	var nid = ' ';
+	var type = ' ';
+	$(document).ready(function(){
+		$('input[name=check_all]').on('change', function(){
+			  $('input[name=check]').prop('checked', this.checked);
 		});
+		
+		$('#createBtn').click(function(){
+			action="create";
+			type="post";
+			$("#modal-title").text("공지사항 작성");
+			$("#noticeModal").modal();
+		});
+		
+		$('#list_title').click(function(){
+			action="modify";
+			type="post";
+			$("#modal-title").text("공지사항 수정/삭제");
+			
+			$('#title').val();
+			$('#ncontent').val();
+			$
+			$("#noticeModal").modal();
+		});
+		
+		$('#modalSubmit').click(function(){
+			if(action == 'create'){
+				nid=0;
+			}else if(action =='manage'){
+				url="/adminpage/managenotice"
+			}
+			
+			var data={
+					"action":action,
+					"writer":"관리자",
+					"title":$('#title').val(),
+					"nid":nid,
+					"ncontent":$('#ncontent').val();
+			};
+			
+			$.ajax({
+				url:url,
+				type:'post',
+				data:data,
+				sucess : function(data){
+					$('#noticeModal').modal('toggle');
+				}
+				complete:function(data){
+					location.reload();
+				}
+			})
+		});
+		
+	});
 	function displayDiv(type) {
 			if (type == 1) {
 				document.getElementById("write").style.display = "block";

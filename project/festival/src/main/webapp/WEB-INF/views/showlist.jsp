@@ -38,21 +38,15 @@
 <link href="resources/css/landing-page.min.css" rel="stylesheet">
 <style type="text/css">
 @import	url('https://fonts.googleapis.com/css?family=Notable&display=swap');
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 #logo {
 	font-family: Notable;
 }
-
 html, body, header, .carousel {
 	height: 100%;
 }
-
-@media ( min-width : 800px) and (max-width: 850px) {
-	.navbar:not (.top-nav-collapse ) {
-		background: #1C2331 !important;
-	}
-}
 #view{
-margin-top:100px
+	margin-top:100px
 }
 </style>
 </head>
@@ -185,8 +179,7 @@ margin-top:100px
 		<div class="row">
 			<div class="col-sm-5 col-md-7">
 				<c:if test='${!empty resultlist }'>
-					<table class="table table-stripaed"
-						style="text-align: center; border: 1px solid #dddddd; height: 70%">
+					<table class="table table-stripaed" style="text-align: center; border: 1px solid #dddddd; height: 70%">
 						<c:forEach var="vo" items="${resultlist.list }">
 							<tr>
 								<td width="40%"
@@ -199,19 +192,18 @@ margin-top:100px
 							</tr>
 						</c:forEach>
 					</table>
-					<table class="table"
-						style="text-align: center; border: 1px solid #dddddd">
+					<table class="table" style="text-align: center; border: 1px solid #dddddd">
 						<c:if test="${resultlist.hasVs()}">
 							<tr>
-								<td><c:if test="${resultlist.startPage > 5}">
+								<td>
+									<c:if test="${resultlist.startPage > 5}">
 										<a href="list?pageNo=${resultlist.startPage - 5}&action=">[이전]</a>
-									</c:if> <c:forEach var="pNo" begin="${resultlist.startPage}"
-										end="${resultlist.endPage}">
+									</c:if> <c:forEach var="pNo" begin="${resultlist.startPage}" end="${resultlist.endPage}">
 										<a href="list?pageNo=${pNo}&action=">[${pNo}]</a>
 									</c:forEach> <c:if test="${resultlist.endPage < resultlist.totalPages}">
-										<a
-											href="list?pageNo=${resultlist.startPage + 5}&action=paging">[다음]</a>
-									</c:if></td>
+										<a href="list?pageNo=${resultlist.startPage + 5}&action=paging">[다음]</a>
+									</c:if>
+								</td>
 							</tr>
 						</c:if>
 					</table>
