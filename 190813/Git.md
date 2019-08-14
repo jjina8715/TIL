@@ -1,0 +1,73 @@
+# Git
+
+- 소스코드의 효율적인 관리를 위한 형상 관리 도구(Configuration Management Tool) 중 하나
+  - 분산형 관리 시스템
+    - 여러 개발 PC와 저장소에 분산해서 저장
+    - 중앙 서버에 장애가 발생해도 로컬 저장소에 커밋 가능
+    - 로컬 저장소들을 이요아여 중앙 저장소의 복원도 가능
+    - 다양한 Workflow가 가능
+- 장점
+  - 같은 파일을 여러 명이 동시에 작업하는 병렬 개발이 가능
+    - 브랜치를 통해 개발한 뒤, 본 프로그램에 합치는 방식(Merge)으로 개발 진행 가능
+  - 인터넷이 연결되지 않은 곳에서도 개발 진행 가능
+    - 중앙 저장소가 날아가도 다시 원상복구 가능
+  - 개인 프로젝트에서도 GIT을 통해 버전 관리를 하면 체계적인 개발이 가능
+    - 프로그램이나 패치를 배포하는 과정도 간단
+      - pull을 통한 업데이트, apatch 파일 배포
+- 특징(공식 사이트)
+  - Distributed development
+    - 전체 개발 이력을 각 개발자의 로컬로 복사본을 제공, 변경된 이력을 다시 하나의 저장소로 복사
+    - 이러한 변경은 추가개발지점을 가져와, 로컬 개발 지점과 동일하게 병합 가능
+    - 저장소는 Git protocol 및 HTTP로 쉽고 효율적으로 접근 가능
+  - Strong support for non-linear development
+    - 신속하고 편리한 branch 및 merge 지원, 비선형 개발 이력을 시각화하고 탐색할 수 있는 강력한 도구를 제공
+  - Efficient handling of large projects
+    - Git은 매우 빠르고, 대형 프로젝트나 이력이 많은 작업에 매우 합리적
+    - 최근의 정상급 오픈 소스 버전 관리 시스템보다 장기산의 수정 내역을 매우 효율적인 압축방법을 사용
+  - Cryptographic authentication of history
+    - Git의 이력은 성공한 개발이력의 commit에 의해 개정명으로 저장
+    - 배포 후엔 예전 버전으로 변경 불가, 암호화 가능
+  - Toolkit design
+    - Git은 C로 작성된 소규모 도구모음
+    - 새롭고 기발한 작업을 위한 쉬운 사용과 쉬운 스크립트을 위한 도구를 제공
+- Github
+  - Git의 기능 데이터를 저장할 수 있는 원격(remote) 저장소 역할
+  - 비공개 프로젝트의 경우 비용 발생
+- gitbucket
+  - 5명까지 무료로 공동작업 가능
+- 용어
+  - repository
+    - 저장소
+    - 히스토리, 태그, 소스의 가지치기 혹은 branch에 따라 버전을 저장
+    - 저장소를 통해 작업자가 변경한 모든 히스토리를 확인 가능
+  - working tree
+    - 작업자의 현재 시점
+  - staging area
+    - 저장소에 커밋하기 전에 커밋을 준비하는 위치
+  - commit
+    - 현재 변경된 작업 상태를 점검을 마치면 확정하고 저장소에 저장하는 작업
+  - head
+    - 현재 작업중인 branch
+  - branch
+    - 가지 또는 분기점
+    - 작업 할 때 현재 상태를 복사하여 작업을 한 후 Merge하여 작업
+  - merge
+    - 다른 branch의 내용을 현재 branch의 가져와 합치는 작업
+- git을 사용하기 위한 용어
+  - git init
+    - 버전 관리를 하고 싶은 폴더에서 초기화하는 준비
+  - git branch
+    - 독립적인 공간 생성
+    - 새로 만든 branch lab1는 master와 완전히 동일한 상태를 가진 공간
+    - branch lab1에서 수정해도 master branch에는 영향을 주지 않는다
+    - 다른 branch로 이동 : checkout master로 head 이동
+    - 실험 성공 : branch lab1 내용을 마스터 branch와 병합
+    - 실험 실패 : branch lab1 삭제
+  - checkout
+    - 독립된 작업 공간인 branch를 자유롭게 이동 가능
+  - git commit
+    - 의미있는 수정 작업이 끝났음을 알리는 작업
+  - pull
+    - 리모트 저장소의 변경된 내용을 로컬 저장소에 적용하는 작업
+  - master
+    - git init 후, default로 만들어지는 가지
