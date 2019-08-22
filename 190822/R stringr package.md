@@ -1,0 +1,33 @@
+# R stringr package
+
+- 문자를 보다 쉽게 처리하고 작업할 수 있는 다양한 패키지 중 하나
+- str_detect(문자열, pattern)
+  - 특정 문자 포함 여부 확인
+- ignore.case
+  - 대소문자 무시하기
+  - 사용
+    - fixed(문자,ignore_case=T)
+    - regex(문자,ignore_case=T)
+- str_count(문자, 특정 문자)
+  - 특정 문자 출현 횟수 세기
+- str_c(문자, 문자열)
+  - 문자 합치기
+- str_dup(문자, 횟수)
+  - 반복 출력
+- str_length(문자)
+  - 문자의 길이 출력
+- str_locate(문자, 특정 문자)
+  - 특정 문자의 위치값 찾기
+- str_replace(문자, 특정 문자, 대체 문자)
+  - 특정 문자 하나를 대체 문자로 바꿈
+  - str_replace_all(문자, 특정 문자, 대체 문자)
+    - 전부 바꿈
+- str_split(문자, 기준)
+  - 문자을 기준에 따라 분리
+- str_sub(문자, start=, end=)
+  - 문자에서 지정된 길이만큼 잘라냄
+  - start가 -면 뒤부터 시작
+- str_trim(문자)
+  - 문자 앞 뒤에 공백이 있을 경우 제거
+- str_extract(문자, pattern)
+  - 문자에서 pattern만 뽑아서 반환
