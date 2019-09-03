@@ -35,31 +35,14 @@
 - labs()
   - x, y , title
 - theme
-  - 그래프의 여러 구성 요소 및 디자인을 지정되어 있있는 형태로 일괄하여 변경할 때 사용
+  - 그래프의 여러 구성 요수 및 디자인을 지정되어 있있는 형태로 일괄하여 변경할 때 사용
   - _gray(), _bw(), _linedraw(), _light(), _dark(), minimal(), _classic(), _void()
-- scale\_*\_gradient()
-  - creates a two colour gradient (low-high), creates a diverging gradient(low-mid-high), creates a n-colour gradient
-  - low, high, [mid,] space, na.value, guide, aesthetics
-- geom_polygon()
-  - very similar to paths (as drawn by geom_path()) except that the start and end points are connected and the inside is colured by `fill`. 
-  - The group aesthetic determines which cases are connected together into a polygon
-  - mapping, data, stat, position, rule, ..., na.rm, show.legend, inherit.aes
-- facet_wrap()
-  - a 1d sequence of panels into 2d
-  - This is generally a better use of screen space than `facet_grid()` b/c most displays are roughly rectangular
-  - facets, nrow, ncol, scales, shrink, labeller, as.table, switch, drop, dir, strip.position
 
 ### plotly
 
-- ggplotly() 
-  - converts a `ggplot2::ggplot()` object to a plotly object
-  - p, width, height, tooltip, dynamicTicks, layerDate, originalData, source, ...
+- ggplotly() : 
 
 ### ggmap package
 
 - get_googlemap(center,, maptype, zoom, marker, ...)
-  - queries the Google Maps Static API version 2 to download a static map
-  - Note that in most cases by using this function tou are agreeing to the Google Maps API Terms of Service at `https://cloud.google.com/maps-platform/terms/`.
-- gecode(location, source, output, force, ...)
-- gmap 
-  - x, y, value
+- gecode(location, source, output, force)
