@@ -27,7 +27,7 @@
   - yintercept : y 절편
 - geom_vline() : 수직선을 그릴 때
   - xintercept : x절편
-- geom_text(aes(데이터 속성)) : 그래프에 텍스트룰 입력할 때
+- geom_text(aes(데이터 속성)) : 그래프에 텍스트를 입력할 때
   - label, vjust, hjust
 - annotate() : 도형 및 화살표 그리기
   - 옵션
