@@ -1,15 +1,15 @@
-# HADOOP #4_Spark
+# HADOOP #4_Spark #1
 
 - DAG(Directed Acyclic Graph)
   - 방향성 비 사이클, 방향을 가지고 루프를 생성하지 않는 그래프
 
-[Apache Spark]
+### Apache Spark
 
 - 오픈 소스 클러스터 컴퓨팅 프레임워크
 - spark 하나를 설치하면 batch, streaming, graph processing, sql 등의 처리가 가능
 - Java, Scala, python, SQL, R언어의 API를 제공하기 때문에 언어적인 선택의 폭이 넓다
 
-[Spark 특징]
+### Spark 특징
 
 - High-Level Tools
 - Spark SQL for SQL
@@ -26,7 +26,7 @@
 - Launching on a Cluster
   - Sparks를 클러스터에도 동작하게 하기 위해서는 cluster manager(yarn) 가 필요
 
-[Spark 종류]
+### Spark 종류
 
 - Standalone Deploy Mode
 - Apache Mesos
@@ -34,7 +34,7 @@
 - Kubernetes
 - Cloude
 
-[RDD]
+### RDD
 
 - Resilient Distributed Datasets
 
@@ -65,7 +65,7 @@
     - 연산의 수행결과가 정수, 리스트, 맵 등 RDD가 아닌 타입
     - first, count, collect, reduce
     - Linage를 실행하고 결과를 생성
-  
+
 
 - Lineage : operation의 순서를 기록해 DAG로 표현하는 것
 
@@ -86,6 +86,8 @@
     - 생성 방법 2가지
       1. Collection 객체 생성
       2. HDFS의 파일 read
+    - parallelize
+      - 스칼라켈렉션 객체를 이용해서 RDD객체를 생성
   - 특징
     - Read Only
     - 1~n개의 partition으로 구성 가능
@@ -96,28 +98,32 @@
   - Spark 애플리케이션과 클러스터의 연결을 관리하는 객체
   - RDD 등 Spark에서 사용되는 주요 객체는 SparkContext객체를 통해 생성
 
-| API             |                                 |                                                       |
-| --------------- | ------------------------------- | ----------------------------------------------------- |
-| Transformations | map(f : T ⇒ U)                  | RDD[T] ⇒ RDD[U]                                       |
-|                 | filter(f : T ⇒ Bool)            | RDD[T] ⇒ RDD[T]                                       |
-|                 | flatMap(f : T ⇒ seq[U])         | RDD[T] ⇒ RDD[U]                                       |
-|                 | sample(fraction : Float)        | RDD[T] ⇒ RDD[T] (Deterministic sampling)              |
-|                 | groupByKey()                    | RDD[(K, V)] ⇒ RDD[(K, Seq[V])]                        |
-|                 | reduceByKey(f : (V, V) ⇒ V)     | RDD[(K, V)] ⇒ RDD[(K, V)]                             |
-|                 | union()                         | (RDD[T], RDD[T]) ⇒ RDD[T]                             |
-|                 | join()                          | (RDD[(K, V)], RDD[(K, W)]) ⇒ RDD[(K, (V, W))]         |
-|                 | cogroup()                       | (RDD[(K, V)], RDD[(K, W)]) ⇒ RDD[(K, Seq[V], Seq[W])] |
-|                 | crossProduct()                  | (RDD[T], RDD[U]) ⇒ RDD[(T, U)]                        |
-|                 | mapValue(f : V ⇒ W)             | RDD[(K, V)] ⇒ RDD[(K, W)] (Preserves partitioning)    |
-|                 | sort(c : Comparator[K])         | RDD[(K, V)] ⇒ RDD[(K, V)]                             |
-|                 | partitionBy(p : Partitioner[K]) | RDD[(K, V)] ⇒ RDD[(K, V)]                             |
-| Actions         | count()                         | RDD[T] ⇒ Long                                         |
-|                 | collect()                       | RDD[T] ⇒ Seq[T]                                       |
-|                 | reduce(f : (T, T) ⇒ T)          | RDD[T] ⇒ T                                            |
-|                 | lookup(k: K)                    | RDD[(K, V)] ⇒ Seq[V] (On hash/range partitioned RDDs) |
-|                 | save(path : String)             | Outputs RDD to a storage ssystem, e.g., HFDS          |
+| API             |                                 |                                                       |                                                              |
+| --------------- | ------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------ |
+| Transformations | map(f : T ⇒ U)                  | RDD[T] ⇒ RDD[U]                                       | 각 요소에 동일한 처리를 적용                                 |
+|                 | filter(f : T ⇒ Bool)            | RDD[T] ⇒ RDD[T]                                       | 요소를 필터링                                                |
+|                 | flatMap(f : T ⇒ seq[U])         | RDD[T] ⇒ RDD[U]                                       | 각 요소에 동일한 처리를 적용, 여러 개의 요소를 생성          |
+|                 | sample(fraction : Float)        | RDD[T] ⇒ RDD[T] (Deterministic sampling)              |                                                              |
+|                 | groupByKey()                    | RDD[(K, V)] ⇒ RDD[(K, Seq[V])]                        | 같은 키를 가지는 요소를 집약처리(aggregation)                |
+|                 | reduceByKey(f : (V, V) ⇒ V)     | RDD[(K, V)] ⇒ RDD[(K, V)]                             | 키값을 기준으로 함수를 수행하고 RDD를 반환                   |
+|                 | union()                         | (RDD[T], RDD[T]) ⇒ RDD[T]                             | 합집합                                                       |
+|                 | intersection()                  |                                                       | 교집합                                                       |
+|                 | subtract()                      |                                                       | 차집합                                                       |
+|                 | join()                          | (RDD[(K, V)], RDD[(K, W)]) ⇒ RDD[(K, (V, W))]         | 두 개의 RDD에서 같은 키를 가지는 요소끼리 조인               |
+|                 | cogroup()                       | (RDD[(K, V)], RDD[(K, W)]) ⇒ RDD[(K, Seq[V], Seq[W])] |                                                              |
+|                 | crossProduct()                  | (RDD[T], RDD[U]) ⇒ RDD[(T, U)]                        |                                                              |
+|                 | mapValue(f : V ⇒ W)             | RDD[(K, V)] ⇒ RDD[(K, W)] (Preserves partitioning)    |                                                              |
+|                 | sort(c : Comparator[K])         | RDD[(K, V)] ⇒ RDD[(K, V)]                             |                                                              |
+|                 | partitionBy(p : Partitioner[K]) | RDD[(K, V)] ⇒ RDD[(K, V)]                             |                                                              |
+| Actions         | count()                         | RDD[T] ⇒ Long                                         | RDD의 요소의 수 반환                                         |
+|                 | collect()                       | RDD[T] ⇒ Seq[T]                                       | RDD의 모든 데이터 반환                                       |
+|                 | reduce(f : (T, T) ⇒ T)          | RDD[T] ⇒ T                                            | 지정된 함수를 수행시켜 입력 RDD의 개수를 축소시켜서 생성된 RDD를 반환 |
+|                 | lookup(k: K)                    | RDD[(K, V)] ⇒ Seq[V] (On hash/range partitioned RDDs) |                                                              |
+|                 | save(path : String)             | Outputs RDD to a storage ssystem, e.g., HFDS          |                                                              |
+|                 | saveAsTextFile                  |                                                       | RDD의 내용을 파일로 출력                                     |
+|                 | first                           |                                                       | RDD 객체의 첫 요소를 반환                                    |
 
-[예시]
+### 예시
 
 - mapreduce
 
